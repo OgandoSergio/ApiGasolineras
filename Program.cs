@@ -1,16 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using ApiGasolineras.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using ApiGasolineras.Servicios;
+using ApiGasolineras.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("_dbContext") ?? throw new InvalidOperationException("Connection string '_dbContextConnection' not found.");
 
-builder.Services.AddDbContext<_dbApiContext>(options =>
+builder.Services.AddDbContext<_dbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApiGasolinerasUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<_dbApiContext>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
+        options => builder.Configuration.Bind("JwtSettings", options));
 
+builder.Services.AddDefaultIdentity<AspNetUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<_dbContext>();
+
+builder.Services.AddScoped<IGasolinerasService, GasolinerasService>();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -26,7 +34,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 app.UseAuthentication();;
 

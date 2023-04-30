@@ -1,6 +1,6 @@
 ﻿{
    "CodeGenerationMode": 2,
-   "ContextClassName": "_dbApiContext",
+   "ContextClassName": "_dbContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
    "FilterSchemas": false,
@@ -41,12 +41,36 @@
       {
          "Name": "[dbo].[AspNetUserTokens]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Coches]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ComunidadesAutonomas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ComunidadesAutonomasProvincias]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ComunidadesAutonomasProvinciasMunicipios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[EstacionesServicio]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TiposCombustibles]",
+         "ObjectType": 0
       }
    ],
    "UiHint": "desktop-ittso0h\\sqlexpress.ApiGasolineras.dbo",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
-   "UseDatabaseNames": false,
+   "UseDatabaseNames": true,
    "UseDateOnlyTimeOnly": false,
    "UseDbContextSplitting": false,
    "UseFluentApiOnly": true,
